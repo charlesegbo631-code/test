@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Luxury Hotel & Airbnb Stay</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+  body {
+    background: linear-gradient(135deg, #0b0f22, #1c2240);
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  header {
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(10px);
+    z-index: 99;
+  }
+
+  header h1 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  header nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    opacity: .8;
+    transition: .3s;
+  }
+
+  header nav a:hover {
+    opacity: 1;
+  }
+
+  /* HERO SECTION */
+  .hero {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    background: url('https://images.unsplash.com/photo-1501117716987-c8e1ecb210d3') center/cover no-repeat;
+    position: relative;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1.5s ease;
+  }
+
+  .hero-content h2 {
+    font-size: 50px;
+    font-weight: 800;
+    margin-bottom: 20px;
+  }
+
+  .hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    opacity: .9;
+  }
+
+  .btn-main {
+    padding: 15px 35px;
+    background: #ffcc00;
+    border-radius: 30px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+  }
+
+  .btn-main:hover {
+    transform: scale(1.05);
+  }
+
+  @keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(40px);} to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* ROOMS */
+  .rooms-section {
+    padding: 80px 40px;
+    text-align: center;
+  }
+
+  .rooms-section h3 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+
+  .rooms-section p {
+    font-size: 16px;
+    opacity: .8;
+    margin-bottom: 50px;
+  }
+
+  .rooms-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+  }
+
+  .room-card {
+    background: #151a33;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeUp 1.2s forwards;
+  }
+
+  .room-card:nth-child(2) { animation-delay: .2s; }
+  .room-card:nth-child(3) { animation-delay: .4s; }
+
+  @keyframes fadeUp { from{opacity: 0; transform: translateY(20px);} to{opacity:1; transform: translateY(0);} }
+
+  .room-card img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+  }
+
+  .room-card h4 {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+
+  .room-card span {
+    font-size: 16px;
+    opacity: .7;
+  }
+
+  /* BOOKING SECTION */
+  .booking {
+    padding: 80px 40px;
+    background: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688') center/cover no-repeat;
+    position: relative;
+  }
+
+  .booking::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+  }
+
+  .booking-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .booking h3 {
+    font-size: 38px;
+    margin-bottom: 20px;
+  }
+
+  .booking button {
+    margin-top: 20px;
+    padding: 15px 35px;
+    background: #ffcc00;
+    color: #000;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    transition: .3s;
+  }
+
+  .booking button:hover { transform: scale(1.05); }
+
+  /* RESPONSIVE */
+  @media (max-width: 480px) {
+    .hero-content h2 { font-size: 32px; }
+    header h1 { font-size: 20px; }
+    header nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>RoyalStay</h1>
+  <nav>
+    <a href="#rooms">Rooms</a>
+    <a href="#book">Book</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h2>Luxurious Living, Comfort & Class</h2>
+    <p>Your perfect getaway awaits — premium rooms, beautiful views, unforgettable experience.</p>
+    <button class="btn-main">Book Your Stay</button>
+  </div>
+</section>
+
+<section class="rooms-section" id="rooms">
+  <h3>Our Premium Rooms</h3>
+  <p>Designed for beauty, comfort, and unforgettable memories.</p>
+
+  <div class="rooms-container">
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" />
+      <h4>Deluxe Suite</h4>
+      <span>$199 / Night</span>
+    </div>
+
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750" />
+      <h4>Royal King Room</h4>
+      <span>$249 / Night</span>
+    </div>
+
+    <div class="room-card">
+      <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353" />
+      <h4>Ocean View Suite</h4>
+      <span>$299 / Night</span>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="book">
+  <div class="booking-content">
+    <h3>Experience Luxury Like Never Before</h3>
+    <p>Book now and enjoy exclusive discounts this season.</p>
+    <button>Reserve Now</button>
+  </div>
+</section>
+
+  <!-- Floating Animated Blobs -->
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particles"></canvas>
+
+<script>
+// === PARALLAX HERO EFFECT ===
+const hero = document.querySelector('.hero');
+document.addEventListener('mousemove', (e) => {
+  const x = (window.innerWidth - e.pageX) / 80;
+  const y = (window.innerHeight - e.pageY) / 80;
+  hero.style.backgroundPosition = `${x}px ${y}px`;
+});
+
+// === FLOATING BLOBS === (Beautiful organic shapes)
+const blobs = document.querySelectorAll('.blob');
+blobs.forEach(b => {
+  b.animate([
+    { transform: "translateY(0px) scale(1)" },
+    { transform: "translateY(-40px) scale(1.05)" },
+    { transform: "translateY(0px) scale(1)" }
+  ], {
+    duration: 8000 + Math.random() * 4000,
+    iterations: Infinity,
+    easing: "ease-in-out"
+  });
+});
+
+// === PARTICLE EFFECT ===
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let width, height;
+
+function resize() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+let particles = [];
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    size: Math.random() * 3 + 1,
+    speedX: (Math.random() - 0.5) * 0.6,
+    speedY: (Math.random() - 0.5) * 0.6,
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  ctx.fillStyle = "rgba(255,255,255,0.7)";
+
+  particles.forEach((p) => {
+    p.x += p.speedX;
+    p.y += p.speedY;
+
+    if (p.x < 0 || p.x > width) p.speedX *= -1;
+    if (p.y < 0 || p.y > height) p.speedY *= -1;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+<style>
+/* FLOATING BLOBS */
+.blob {
+  position: fixed;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #ffcc00aa, #ff9900aa);
+  filter: blur(80px);
+  z-index: -2;
+  border-radius: 50%;
+}
+
+.blob1 { top: 10%; left: 5%; }
+.blob2 { bottom: 15%; right: 10%; background: radial-gradient(circle, #00ccffaa, #0066ffaa); }
+.blob3 { top: 30%; right: 40%; background: radial-gradient(circle, #ff66ccaa, #cc0099aa); }
+
+/* PARTICLE CANVAS */
+#particles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+</style>
+
+</body>
+</html>
